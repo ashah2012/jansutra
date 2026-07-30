@@ -1,0 +1,98 @@
+site_name: Jansutra — जनसूत्र
+site_description: >
+  A federated, privacy-by-design OWL ontology for India's citizen
+  socioeconomic data. SHACL-validated, JSON-LD primary, SPARQL-queryable.
+site_url: https://ashah2012.github.io/jansutra/
+repo_url: https://github.com/ashah2012/jansutra
+repo_name: ashah2012/jansutra
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep orange
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep orange
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - toc.integrate
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      linenums: false
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path:
+        - .
+      check_paths: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+plugins:
+  - search:
+      lang: en
+
+nav:
+  - Home: index.md
+  - The Problem: problem.md
+  - Design: design.md
+  - Ontology Reference:
+      - Overview: ontology/index.md
+      - Core: ontology/core.md
+      - Social: ontology/social.md
+      - Economic: ontology/economic.md
+      - Geography: ontology/geography.md
+      - Land: ontology/land.md
+      - Health: ontology/health.md
+      - Services: ontology/services.md
+  - SHACL Validation: validation.md
+  - Example Data: example.md
+  - SPARQL Queries: sparql.md
+  - Tools & Usage: tools.md
+  - Data Collection: data-collection.md
+  - Government Use Cases: government-use-cases.md
+  - Limitations: limitations.md
+  - Design Rationale: design-rationale.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ashah2012/jansutra
+      name: GitHub
+    - icon: fontawesome/solid/rss
+      link: https://abhishek-shah.dev/blog/2026/07/25/india-needs-central-database/
+      name: Motivation blog post

@@ -9,6 +9,9 @@ dependencies = [
     "rich>=13",
 ]
 
+[project.optional-dependencies]
+docs = ["mkdocs-material>=9.5"]
+
 [project.scripts]
 jansutra-validate = "tools.validate:main"
 jansutra-query = "tools.query:main"
