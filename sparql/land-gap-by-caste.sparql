@@ -1,0 +1,21 @@
+# Average landholding area by caste category — measures the land ownership gap
+# between ST/SC and non-ST/SC households that the blog cites as a key metric
+# for tracking social mobility over Census cycles.
+
+PREFIX jansutra: <https://jansutra.in/vocab/>
+PREFIX skos:     <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?casteLabel (AVG(?areaHa) AS ?avgHectares) (COUNT(?citizen) AS ?citizenCount)
+WHERE {
+  ?citizen a jansutra:Citizen ;
+           jansutra:hasSocialRecord ?social ;
+           jansutra:hasLandHolding  ?holding .
+
+  ?social jansutra:casteCategory ?caste .
+  ?caste skos:prefLabel ?casteLabel .
+  FILTER(LANG(?casteLabel) = "en")
+
+  ?holding jansutra:areaInHectares ?areaHa .
+}
+GROUP BY ?casteLabel
+ORDER BY ?casteLabel

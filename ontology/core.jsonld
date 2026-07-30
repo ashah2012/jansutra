@@ -1,0 +1,118 @@
+{
+  "@context": "./context/jansutra.context.jsonld",
+  "@graph": [
+    {
+      "@id": "https://jansutra.in/vocab/",
+      "@type": "owl:Ontology",
+      "dcterms:title": {"@value": "Jansutra Core Ontology", "@language": "en"},
+      "dcterms:description": {
+        "@value": "Core citizen identity module for the Jansutra federated socioeconomic ontology. Each citizen is identified by an internal UUID URI; no Aadhaar number is stored in this model.",
+        "@language": "en"
+      },
+      "owl:imports": [
+        {"@id": "https://schema.org/"},
+        {"@id": "http://www.w3.org/2004/02/skos/core"}
+      ],
+      "dcterms:license": {"@id": "https://creativecommons.org/licenses/by/4.0/"},
+      "owl:versionInfo": "0.1.0"
+    },
+
+    {
+      "@id": "jansutra:VulnerabilityDimension",
+      "@type": "owl:Class",
+      "rdfs:label": [
+        {"@value": "Vulnerability Dimension", "@language": "en"},
+        {"@value": "संवेदनशीलता आयाम", "@language": "hi"}
+      ],
+      "rdfs:comment": {
+        "@value": "Abstract superclass for all point-in-time socioeconomic domain records (economic, social, health, land, services). Each record carries a survey year and data source for provenance.",
+        "@language": "en"
+      },
+      "dpv:hasPersonalDataCategory": {"@id": "dpv:SensitivePersonalData"}
+    },
+
+    {
+      "@id": "jansutra:Citizen",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": {"@id": "schema:Person"},
+      "rdfs:label": [
+        {"@value": "Citizen", "@language": "en"},
+        {"@value": "नागरिक", "@language": "hi"}
+      ],
+      "rdfs:comment": {
+        "@value": "A resident of India whose socioeconomic profile is captured in the survey. Identified by an opaque internal UUID URI (https://jansutra.in/citizen/<uuid>).",
+        "@language": "en"
+      }
+    },
+
+    {
+      "@id": "jansutra:residesIn",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "jansutra:Citizen"},
+      "rdfs:range": {"@id": "jansutra:AdministrativeUnit"},
+      "rdfs:label": {"@value": "resides in", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Links a citizen to the lowest-level administrative unit (village or ward) of their primary residence.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:hasEconomicRecord",
+      "@type": ["owl:ObjectProperty", "owl:FunctionalProperty"],
+      "rdfs:domain": {"@id": "jansutra:Citizen"},
+      "rdfs:range": {"@id": "jansutra:EconomicRecord"},
+      "rdfs:label": {"@value": "has economic record", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:hasSocialRecord",
+      "@type": ["owl:ObjectProperty", "owl:FunctionalProperty"],
+      "rdfs:domain": {"@id": "jansutra:Citizen"},
+      "rdfs:range": {"@id": "jansutra:SocialRecord"},
+      "rdfs:label": {"@value": "has social record", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:hasLandHolding",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "jansutra:Citizen"},
+      "rdfs:range": {"@id": "jansutra:LandHolding"},
+      "rdfs:label": {"@value": "has land holding", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "A citizen may have zero or more land holdings across different locations.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:hasHealthRecord",
+      "@type": ["owl:ObjectProperty", "owl:FunctionalProperty"],
+      "rdfs:domain": {"@id": "jansutra:Citizen"},
+      "rdfs:range": {"@id": "jansutra:HealthRecord"},
+      "rdfs:label": {"@value": "has health record", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:hasServiceAccessRecord",
+      "@type": ["owl:ObjectProperty", "owl:FunctionalProperty"],
+      "rdfs:domain": {"@id": "jansutra:Citizen"},
+      "rdfs:range": {"@id": "jansutra:ServiceAccessRecord"},
+      "rdfs:label": {"@value": "has service access record", "@language": "en"}
+    },
+
+    {
+      "@id": "jansutra:surveyYear",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:VulnerabilityDimension"},
+      "rdfs:range": {"@id": "xsd:gYear"},
+      "rdfs:label": {"@value": "survey year", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:dataSource",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:VulnerabilityDimension"},
+      "rdfs:range": {"@id": "xsd:string"},
+      "rdfs:label": {"@value": "data source", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Name or code of the survey or administrative register that originated this record (e.g. SECC-2026, NFHS-6, state-land-registry).",
+        "@language": "en"
+      }
+    }
+  ]
+}

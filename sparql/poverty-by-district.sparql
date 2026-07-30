@@ -1,0 +1,26 @@
+# Aggregate: count of BPL / AAY citizens per district, broken down by caste category.
+# Enables the intersectional targeting analysis described in the blog post.
+
+PREFIX jansutra: <https://jansutra.in/vocab/>
+PREFIX skos:     <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?districtLabel ?casteNotation (COUNT(?citizen) AS ?citizenCount)
+WHERE {
+  ?citizen a jansutra:Citizen ;
+           jansutra:residesIn        ?village ;
+           jansutra:hasEconomicRecord ?economic ;
+           jansutra:hasSocialRecord   ?social .
+
+  ?economic jansutra:povertyStatus ?ps .
+  FILTER(?ps IN (jansutra:BPL, jansutra:Antyodaya))
+
+  ?social jansutra:casteCategory ?caste .
+  ?caste skos:notation ?casteNotation .
+
+  ?village jansutra:hasParentUnit* ?district .
+  ?district jansutra:adminLevel jansutra:District .
+  ?district skos:prefLabel ?districtLabel .
+  FILTER(LANG(?districtLabel) = "en")
+}
+GROUP BY ?districtLabel ?casteNotation
+ORDER BY ?districtLabel DESC(?citizenCount)

@@ -1,0 +1,156 @@
+{
+  "@context": "./context/jansutra.context.jsonld",
+  "@graph": [
+    {
+      "@id": "jansutra:HealthRecord",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": {"@id": "jansutra:VulnerabilityDimension"},
+      "rdfs:label": [
+        {"@value": "Health Record", "@language": "en"},
+        {"@value": "स्वास्थ्य अभिलेख", "@language": "hi"}
+      ],
+      "rdfs:comment": {
+        "@value": "Functional health status dimensions relevant to welfare eligibility and vulnerability scoring. Not a clinical record — no diagnoses, prescriptions, or treatment history.",
+        "@language": "en"
+      },
+      "dpv:hasPersonalDataCategory": {"@id": "dpv:SensitivePersonalData"}
+    },
+
+    {
+      "@id": "jansutra:DisabilityTypeScheme",
+      "@type": "skos:ConceptScheme",
+      "dcterms:title": {"@value": "Disability Type Classification", "@language": "en"},
+      "dcterms:description": {
+        "@value": "21 categories under Rights of Persons with Disabilities Act 2016 (RPWD Act). This scheme lists the top-level groupings used for welfare targeting; sub-type specificity is captured in jansutra:disabilityDetail.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:NoDisability",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "No Disability", "@language": "en"}, {"@value": "कोई दिव्यांगता नहीं", "@language": "hi"}],
+      "skos:notation": "NONE",
+      "skos:inScheme": {"@id": "jansutra:DisabilityTypeScheme"}
+    },
+    {
+      "@id": "jansutra:VisualImpairment",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Visual Impairment / Blindness", "@language": "en"}, {"@value": "दृष्टि दोष", "@language": "hi"}],
+      "skos:notation": "VIS",
+      "skos:inScheme": {"@id": "jansutra:DisabilityTypeScheme"}
+    },
+    {
+      "@id": "jansutra:HearingImpairment",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Hearing Impairment / Deafness", "@language": "en"}, {"@value": "श्रवण दोष", "@language": "hi"}],
+      "skos:notation": "HEAR",
+      "skos:inScheme": {"@id": "jansutra:DisabilityTypeScheme"}
+    },
+    {
+      "@id": "jansutra:LocomotorImpairment",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Locomotor Disability", "@language": "en"}, {"@value": "चलन दोष", "@language": "hi"}],
+      "skos:notation": "LOCO",
+      "skos:inScheme": {"@id": "jansutra:DisabilityTypeScheme"}
+    },
+    {
+      "@id": "jansutra:IntellectualDisability",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Intellectual Disability", "@language": "en"}, {"@value": "बौद्धिक दोष", "@language": "hi"}],
+      "skos:notation": "INTEL",
+      "skos:inScheme": {"@id": "jansutra:DisabilityTypeScheme"}
+    },
+    {
+      "@id": "jansutra:MentalIllness",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Mental Illness", "@language": "en"}, {"@value": "मानसिक रोग", "@language": "hi"}],
+      "skos:notation": "MENTAL",
+      "skos:inScheme": {"@id": "jansutra:DisabilityTypeScheme"},
+      "dpv:hasPersonalDataCategory": {"@id": "dpv:SensitivePersonalData"}
+    },
+    {
+      "@id": "jansutra:MultipleDisabilities",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Multiple Disabilities", "@language": "en"}, {"@value": "बहु दिव्यांगता", "@language": "hi"}],
+      "skos:notation": "MULTI",
+      "skos:inScheme": {"@id": "jansutra:DisabilityTypeScheme"}
+    },
+    {
+      "@id": "jansutra:OtherDisability",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Other Specified Disability (RPWD 2016)", "@language": "en"}],
+      "skos:notation": "OTHER",
+      "skos:inScheme": {"@id": "jansutra:DisabilityTypeScheme"}
+    },
+
+    {
+      "@id": "jansutra:hasDisability",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:HealthRecord"},
+      "rdfs:range": {"@id": "xsd:boolean"},
+      "rdfs:label": {"@value": "has disability", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "True if the citizen has any disability recognised under the RPWD Act 2016. If true, disabilityType must be provided.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:disabilityType",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "jansutra:HealthRecord"},
+      "rdfs:range": {"@id": "skos:Concept"},
+      "rdfs:label": {"@value": "disability type", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:disabilityBenchmark",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:HealthRecord"},
+      "rdfs:range": {"@id": "xsd:decimal"},
+      "rdfs:label": {"@value": "disability benchmark (%)", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Assessed percentage disability as per RPWD Act (0–100). ≥40% qualifies for most scheme benefits.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:hasHealthInsurance",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:HealthRecord"},
+      "rdfs:range": {"@id": "xsd:boolean"},
+      "rdfs:label": {"@value": "has health insurance", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Whether the citizen is covered by any health insurance — government scheme (PM-JAY / Ayushman Bharat) or private.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:isPMAYBeneficiary",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:HealthRecord"},
+      "rdfs:range": {"@id": "xsd:boolean"},
+      "rdfs:label": {"@value": "is PM-JAY / Ayushman Bharat beneficiary", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:isPregnantOrLactating",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:HealthRecord"},
+      "rdfs:range": {"@id": "xsd:boolean"},
+      "rdfs:label": {"@value": "is pregnant or lactating (at time of survey)", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Relevant for PMMVY maternity benefit eligibility and ICDS nutrition targeting.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:childrenUnder5",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:HealthRecord"},
+      "rdfs:range": {"@id": "xsd:nonNegativeInteger"},
+      "rdfs:label": {"@value": "children under 5 in household", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Count of children aged 0–59 months — primary targeting criterion for ICDS / nutrition mission interventions.",
+        "@language": "en"
+      }
+    }
+  ]
+}

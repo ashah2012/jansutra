@@ -1,0 +1,199 @@
+{
+  "@context": "./context/jansutra.context.jsonld",
+  "@graph": [
+    {
+      "@id": "jansutra:LandHolding",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": {"@id": "jansutra:VulnerabilityDimension"},
+      "rdfs:label": [
+        {"@value": "Land Holding", "@language": "en"},
+        {"@value": "भू-जोत", "@language": "hi"}
+      ],
+      "rdfs:comment": {
+        "@value": "A single parcel of land associated with a citizen. One citizen may have zero or more LandHolding instances across different locations or tenure types.",
+        "@language": "en"
+      }
+    },
+
+    {
+      "@id": "jansutra:LandTypeScheme",
+      "@type": "skos:ConceptScheme",
+      "dcterms:title": {"@value": "Land Use / Agricultural Type", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:IrrigatedLand",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Net Irrigated Land", "@language": "en"},
+        {"@value": "सिंचित भूमि", "@language": "hi"}
+      ],
+      "skos:notation": "IRRIG",
+      "skos:inScheme": {"@id": "jansutra:LandTypeScheme"}
+    },
+    {
+      "@id": "jansutra:DrylandRainfed",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Dryland / Rainfed", "@language": "en"},
+        {"@value": "वर्षाश्रित भूमि", "@language": "hi"}
+      ],
+      "skos:notation": "DRY",
+      "skos:inScheme": {"@id": "jansutra:LandTypeScheme"}
+    },
+    {
+      "@id": "jansutra:HomsteadLand",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Homestead / House Site", "@language": "en"},
+        {"@value": "घरेलू भूमि", "@language": "hi"}
+      ],
+      "skos:notation": "HOME",
+      "skos:inScheme": {"@id": "jansutra:LandTypeScheme"}
+    },
+    {
+      "@id": "jansutra:ForestLand",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Forest Land (FRA title)", "@language": "en"},
+        {"@value": "वन भूमि (FRA पट्टा)", "@language": "hi"}
+      ],
+      "skos:notation": "FOREST",
+      "skos:inScheme": {"@id": "jansutra:LandTypeScheme"},
+      "skos:note": {
+        "@value": "Land recognized under the Forest Rights Act 2006 (individual or community forest rights).",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:WastelandFallow",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Wasteland / Fallow", "@language": "en"},
+        {"@value": "बंजर / परती भूमि", "@language": "hi"}
+      ],
+      "skos:notation": "FALLOW",
+      "skos:inScheme": {"@id": "jansutra:LandTypeScheme"}
+    },
+
+    {
+      "@id": "jansutra:TenureTypeScheme",
+      "@type": "skos:ConceptScheme",
+      "dcterms:title": {"@value": "Land Tenure Type", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:OwnedTitled",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Owned with registered title", "@language": "en"},
+        {"@value": "पंजीकृत स्वामित्व", "@language": "hi"}
+      ],
+      "skos:notation": "OWN-T",
+      "skos:inScheme": {"@id": "jansutra:TenureTypeScheme"}
+    },
+    {
+      "@id": "jansutra:OwnedUntitled",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Owned without registered title (customary)", "@language": "en"},
+        {"@value": "बिना पंजीकरण के स्वामित्व", "@language": "hi"}
+      ],
+      "skos:notation": "OWN-U",
+      "skos:inScheme": {"@id": "jansutra:TenureTypeScheme"},
+      "skos:note": {
+        "@value": "Common for tribal communities operating under customary tenure before FRA recognition.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:Leased",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Leased-in (formal contract)", "@language": "en"},
+        {"@value": "पट्टे पर", "@language": "hi"}
+      ],
+      "skos:notation": "LEASE",
+      "skos:inScheme": {"@id": "jansutra:TenureTypeScheme"}
+    },
+    {
+      "@id": "jansutra:Sharecropped",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Sharecropped / Batai", "@language": "en"},
+        {"@value": "बटाईदारी", "@language": "hi"}
+      ],
+      "skos:notation": "SHARE",
+      "skos:inScheme": {"@id": "jansutra:TenureTypeScheme"}
+    },
+    {
+      "@id": "jansutra:Encroached",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Encroached (informal, contested)", "@language": "en"},
+        {"@value": "अतिक्रमण", "@language": "hi"}
+      ],
+      "skos:notation": "ENC",
+      "skos:inScheme": {"@id": "jansutra:TenureTypeScheme"}
+    },
+    {
+      "@id": "jansutra:CommunalCommons",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Communal Commons / Gram Sabha land", "@language": "en"},
+        {"@value": "सामुदायिक भूमि", "@language": "hi"}
+      ],
+      "skos:notation": "COMM",
+      "skos:inScheme": {"@id": "jansutra:TenureTypeScheme"}
+    },
+
+    {
+      "@id": "jansutra:areaInHectares",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:LandHolding"},
+      "rdfs:range": {"@id": "xsd:decimal"},
+      "rdfs:label": {"@value": "area in hectares", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:landType",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "jansutra:LandHolding"},
+      "rdfs:range": {"@id": "skos:Concept"},
+      "rdfs:label": {"@value": "land type", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:tenureType",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "jansutra:LandHolding"},
+      "rdfs:range": {"@id": "skos:Concept"},
+      "rdfs:label": {"@value": "tenure type", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:hasTitleDeed",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:LandHolding"},
+      "rdfs:range": {"@id": "xsd:boolean"},
+      "rdfs:label": {"@value": "has registered title deed", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:khasraNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:LandHolding"},
+      "rdfs:range": {"@id": "xsd:string"},
+      "rdfs:label": {"@value": "Khasra / survey number", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Revenue record parcel identifier (Khasra in most states; Survey Number in southern states). Enables cross-referencing with state land registries.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:holdingLocatedIn",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "jansutra:LandHolding"},
+      "rdfs:range": {"@id": "jansutra:AdministrativeUnit"},
+      "rdfs:label": {"@value": "holding located in", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Village or ward where this parcel is physically located (may differ from citizen's residence).",
+        "@language": "en"
+      }
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix jansutra: <https://jansutra.in/vocab/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+jansutra:Absent a skos:Concept ;
+    skos:inScheme jansutra:AccessQualityScheme ;
+    skos:notation "ABS" ;
+    skos:prefLabel "Absent / No access"@en,
+        "अनुपलब्ध"@hi .
+
+jansutra:AnganwadiAccess a skos:Concept ;
+    skos:inScheme jansutra:ServiceTypeScheme ;
+    skos:notation "AWC" ;
+    skos:prefLabel "Anganwadi / ICDS Centre within 1 km"@en,
+        "आंगनवाड़ी केंद्र (1 किमी में)"@hi .
+
+jansutra:BankBranchAccess a skos:Concept ;
+    skos:inScheme jansutra:ServiceTypeScheme ;
+    skos:notation "BANK" ;
+    skos:prefLabel "Bank Branch / Business Correspondent within 5 km"@en,
+        "बैंक / BC केंद्र (5 किमी में)"@hi .
+
+jansutra:BroadbandInternet a skos:Concept ;
+    skos:inScheme jansutra:ServiceTypeScheme ;
+    skos:notation "INTERNET" ;
+    skos:prefLabel "Broadband Internet (BharatNet / mobile 4G+)"@en,
+        "इंटरनेट"@hi .
+
+jansutra:GridElectricity a skos:Concept ;
+    skos:inScheme jansutra:ServiceTypeScheme ;
+    skos:notation "ELEC" ;
+    skos:prefLabel "Grid Electricity (SAUBHAGYA / RGGVY)"@en,
+        "बिजली (ग्रिड)"@hi .
+
+jansutra:HouseholdToilet a skos:Concept ;
+    skos:inScheme jansutra:ServiceTypeScheme ;
+    skos:notation "TOILET" ;
+    skos:prefLabel "Household Toilet (SBM-G / SBM-U)"@en,
+        "शौचालय"@hi .
+
+jansutra:Intermittent a skos:Concept ;
+    skos:inScheme jansutra:AccessQualityScheme ;
+    skos:notation "INT" ;
+    skos:prefLabel "Intermittent / Seasonal"@en,
+        "अनियमित"@hi .
+
+jansutra:PHCAccess a skos:Concept ;
+    skos:inScheme jansutra:ServiceTypeScheme ;
+    skos:notation "PHC" ;
+    skos:prefLabel "Primary Health Centre (PHC) within 10 km"@en,
+        "प्राथमिक स्वास्थ्य केंद्र (10 किमी में)"@hi .
+
+jansutra:PavedRoad a skos:Concept ;
+    skos:inScheme jansutra:ServiceTypeScheme ;
+    skos:notation "ROAD" ;
+    skos:prefLabel "All-weather Paved Road (PMGSY)"@en,
+        "पक्की सड़क"@hi .
+
+jansutra:PrimarySchoolAccess a skos:Concept ;
+    skos:inScheme jansutra:ServiceTypeScheme ;
+    skos:notation "SCH-P" ;
+    skos:prefLabel "Primary School within 1 km"@en,
+        "प्राथमिक विद्यालय (1 किमी में)"@hi .
+
+jansutra:Reliable a skos:Concept ;
+    skos:inScheme jansutra:AccessQualityScheme ;
+    skos:notation "REL" ;
+    skos:prefLabel "Reliable (≥20 hours/day for utilities)"@en,
+        "विश्वसनीय"@hi .
+
+jansutra:SafeWaterSource a skos:Concept ;
+    skos:broader jansutra:PipedWater ;
+    skos:inScheme jansutra:ServiceTypeScheme ;
+    skos:notation "WATER-SAFE" ;
+    skos:prefLabel "Safe Water Source (handpump / borewell / protected well)"@en,
+        "सुरक्षित जल स्रोत"@hi .
+
+jansutra:SecondarySchoolAccess a skos:Concept ;
+    skos:inScheme jansutra:ServiceTypeScheme ;
+    skos:notation "SCH-S" ;
+    skos:prefLabel "Secondary School within 5 km"@en,
+        "माध्यमिक विद्यालय (5 किमी में)"@hi .
+
+jansutra:accessQuality a owl:ObjectProperty ;
+    rdfs:label "access quality"@en ;
+    rdfs:comment "Reliability / quality level; must be a concept in jansutra:AccessQualityScheme."@en ;
+    rdfs:domain jansutra:ServiceAccess ;
+    rdfs:range skos:Concept .
+
+jansutra:accessType a owl:ObjectProperty ;
+    rdfs:label "access type"@en ;
+    rdfs:comment "Which service is being assessed; must be a concept in jansutra:ServiceTypeScheme."@en ;
+    rdfs:domain jansutra:ServiceAccess ;
+    rdfs:range skos:Concept .
+
+jansutra:distanceInKm a owl:DatatypeProperty ;
+    rdfs:label "distance in km (nearest facility)"@en ;
+    rdfs:comment "Walking distance to the nearest facility of this service type. Only applicable to proximity-based services (school, PHC, bank, anganwadi)."@en ;
+    rdfs:domain jansutra:ServiceAccess ;
+    rdfs:range xsd:decimal .
+
+jansutra:hasServiceAccess a owl:ObjectProperty ;
+    rdfs:label "has service access"@en ;
+    rdfs:domain jansutra:ServiceAccessRecord ;
+    rdfs:range jansutra:ServiceAccess .
+
+jansutra:PipedWater a skos:Concept ;
+    skos:inScheme jansutra:ServiceTypeScheme ;
+    skos:notation "WATER-PIPE" ;
+    skos:prefLabel "Piped Drinking Water (Har Ghar Jal)"@en,
+        "नल का पानी"@hi .
+
+jansutra:ServiceAccessRecord a owl:Class ;
+    rdfs:label "Service Access Record"@en,
+        "सेवा पहुँच अभिलेख"@hi ;
+    rdfs:comment "Captures household access to basic public services and infrastructure. Each individual service access claim is an instance of jansutra:ServiceAccess linked via jansutra:hasServiceAccess."@en ;
+    rdfs:subClassOf jansutra:VulnerabilityDimension .
+
+jansutra:AccessQualityScheme a skos:ConceptScheme ;
+    dcterms:title "Service Access Quality / Reliability"@en .
+
+jansutra:ServiceAccess a owl:Class ;
+    rdfs:label "Service Access (individual claim)"@en,
+        "सेवा पहुँच (एकल दावा)"@hi ;
+    rdfs:comment "A single access claim for one service type: e.g., 'has piped water, intermittent quality'."@en .
+
+jansutra:ServiceTypeScheme a skos:ConceptScheme ;
+    dcterms:description "Canonical list of services surveyed for welfare and vulnerability assessment, aligned with SDG 6, 7, and India's DISHA monitoring framework."@en ;
+    dcterms:title "Basic Public Service Types"@en .
+

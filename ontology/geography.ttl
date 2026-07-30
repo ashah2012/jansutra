@@ -1,0 +1,80 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix gsp: <http://www.opengis.net/ont/geosparql#> .
+@prefix jansutra: <https://jansutra.in/vocab/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+jansutra:VillageWard a skos:Concept ;
+    skos:broader jansutra:SubDistrict ;
+    skos:inScheme jansutra:AdminLevelScheme ;
+    skos:notation "L4" ;
+    skos:prefLabel "Village / Ward"@en,
+        "ग्राम / वार्ड"@hi .
+
+jansutra:adminLevel a owl:ObjectProperty ;
+    rdfs:label "admin level"@en ;
+    rdfs:comment "Level in the administrative hierarchy; must be a concept in jansutra:AdminLevelScheme."@en ;
+    rdfs:domain jansutra:AdministrativeUnit ;
+    rdfs:range skos:Concept .
+
+jansutra:hasGeometry a owl:ObjectProperty ;
+    rdfs:label "has geometry"@en ;
+    rdfs:comment "GeoSPARQL geometry (WKT polygon) for district-level and above boundaries."@en ;
+    rdfs:domain jansutra:AdministrativeUnit ;
+    rdfs:range gsp:Geometry .
+
+jansutra:hasParentUnit a owl:ObjectProperty ;
+    rdfs:label "has parent unit"@en ;
+    rdfs:comment "Hierarchical containment: a village is contained in a sub-district, which is in a district, which is in a state/UT. Equivalent to skos:broader for the unit hierarchy."@en ;
+    rdfs:domain jansutra:AdministrativeUnit ;
+    rdfs:range jansutra:AdministrativeUnit ;
+    owl:equivalentProperty skos:broader .
+
+jansutra:isPESAArea a owl:DatatypeProperty ;
+    rdfs:label "is PESA area"@en ;
+    rdfs:comment "True if the unit falls under the Fifth Schedule (PESA Act 1996) — indicating a scheduled tribal area with gram sabha self-governance rights."@en ;
+    rdfs:domain jansutra:AdministrativeUnit ;
+    rdfs:range xsd:boolean .
+
+jansutra:isRemoteArea a owl:DatatypeProperty ;
+    rdfs:label "is remote area"@en ;
+    rdfs:comment "True if the unit qualifies as remote under PMGSY road connectivity criteria (no all-weather road within 5 km)."@en ;
+    rdfs:domain jansutra:AdministrativeUnit ;
+    rdfs:range xsd:boolean .
+
+jansutra:lgdCode a owl:DatatypeProperty ;
+    rdfs:label "LGD code"@en ;
+    rdfs:comment "Local Government Directory (LGD) code assigned by MoPR — the canonical identifier for administrative units in India."@en ;
+    rdfs:domain jansutra:AdministrativeUnit ;
+    rdfs:range xsd:string .
+
+jansutra:District a skos:Concept ;
+    skos:broader jansutra:StateUT ;
+    skos:inScheme jansutra:AdminLevelScheme ;
+    skos:notation "L2" ;
+    skos:prefLabel "District"@en,
+        "जिला"@hi .
+
+jansutra:StateUT a skos:Concept ;
+    skos:inScheme jansutra:AdminLevelScheme ;
+    skos:notation "L1" ;
+    skos:prefLabel "State / Union Territory"@en,
+        "राज्य / केंद्र शासित प्रदेश"@hi .
+
+jansutra:SubDistrict a skos:Concept ;
+    skos:broader jansutra:District ;
+    skos:inScheme jansutra:AdminLevelScheme ;
+    skos:notation "L3" ;
+    skos:prefLabel "Sub-district (Tehsil / Block)"@en,
+        "तहसील / प्रखंड"@hi .
+
+jansutra:AdminLevelScheme a skos:ConceptScheme ;
+    dcterms:title "Administrative Hierarchy Level"@en .
+
+jansutra:AdministrativeUnit a owl:Class ;
+    rdfs:label "Administrative Unit"@en,
+        "प्रशासनिक इकाई"@hi ;
+    rdfs:comment "A node in India's administrative hierarchy: State/UT → District → Sub-district (Tehsil/Taluka/Block) → Village/Ward. Units at the same level are linked via skos:broader to their parent."@en .
+

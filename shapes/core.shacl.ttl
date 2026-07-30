@@ -1,0 +1,69 @@
+@prefix sh:       <http://www.w3.org/ns/shacl#> .
+@prefix jansutra: <https://jansutra.in/vocab/> .
+@prefix schema:   <https://schema.org/> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+
+# ---------------------------------------------------------------------------
+# Core shapes — jansutra:Citizen and jansutra:VulnerabilityDimension
+# ---------------------------------------------------------------------------
+
+jansutra:CitizenShape
+    a sh:NodeShape ;
+    sh:targetClass jansutra:Citizen ;
+
+    sh:property [
+        sh:path jansutra:residesIn ;
+        sh:minCount 1 ;
+        sh:class jansutra:AdministrativeUnit ;
+        sh:message "Every Citizen must have exactly one primary residence (jansutra:residesIn → AdministrativeUnit)." ;
+    ] ;
+
+    sh:property [
+        sh:path schema:birthDate ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:date ;
+        sh:message "schema:birthDate must be a single xsd:date value." ;
+    ] ;
+
+    sh:property [
+        sh:path jansutra:hasEconomicRecord ;
+        sh:maxCount 1 ;
+        sh:class jansutra:EconomicRecord ;
+    ] ;
+
+    sh:property [
+        sh:path jansutra:hasSocialRecord ;
+        sh:maxCount 1 ;
+        sh:class jansutra:SocialRecord ;
+    ] ;
+
+    sh:property [
+        sh:path jansutra:hasHealthRecord ;
+        sh:maxCount 1 ;
+        sh:class jansutra:HealthRecord ;
+    ] ;
+
+    sh:property [
+        sh:path jansutra:hasServiceAccessRecord ;
+        sh:maxCount 1 ;
+        sh:class jansutra:ServiceAccessRecord ;
+    ] .
+
+
+jansutra:VulnerabilityDimensionShape
+    a sh:NodeShape ;
+    sh:targetClass jansutra:VulnerabilityDimension ;
+
+    sh:property [
+        sh:path jansutra:surveyYear ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:gYear ;
+        sh:message "surveyYear must be a single xsd:gYear value (e.g. \"2026\"^^xsd:gYear)." ;
+    ] ;
+
+    sh:property [
+        sh:path jansutra:dataSource ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+    ] .

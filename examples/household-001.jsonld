@@ -1,0 +1,156 @@
+{
+  "@context": "../ontology/context/jansutra.context.jsonld",
+  "@graph": [
+
+    {
+      "@id": "geo:village/jharkhand/west-singhbhum/chakradharpur/bandgaon",
+      "@type": "jansutra:AdministrativeUnit",
+      "skos:prefLabel": [
+        {"@value": "Bandgaon", "@language": "en"},
+        {"@value": "बांडगाँव", "@language": "hi"}
+      ],
+      "jansutra:lgdCode": "265432",
+      "jansutra:adminLevel": {"@id": "jansutra:VillageWard"},
+      "jansutra:isRemoteArea": {"@type": "xsd:boolean", "@value": "true"},
+      "jansutra:isPESAArea": {"@type": "xsd:boolean", "@value": "true"},
+      "jansutra:hasParentUnit": {"@id": "geo:subdistrict/jharkhand/west-singhbhum/chakradharpur"}
+    },
+    {
+      "@id": "geo:subdistrict/jharkhand/west-singhbhum/chakradharpur",
+      "@type": "jansutra:AdministrativeUnit",
+      "skos:prefLabel": [
+        {"@value": "Chakradharpur Block", "@language": "en"},
+        {"@value": "चक्रधरपुर प्रखंड", "@language": "hi"}
+      ],
+      "jansutra:lgdCode": "265400",
+      "jansutra:adminLevel": {"@id": "jansutra:SubDistrict"},
+      "jansutra:hasParentUnit": {"@id": "geo:district/jharkhand/west-singhbhum"}
+    },
+    {
+      "@id": "geo:district/jharkhand/west-singhbhum",
+      "@type": "jansutra:AdministrativeUnit",
+      "skos:prefLabel": [
+        {"@value": "West Singhbhum", "@language": "en"},
+        {"@value": "पश्चिमी सिंहभूम", "@language": "hi"}
+      ],
+      "jansutra:lgdCode": "265000",
+      "jansutra:adminLevel": {"@id": "jansutra:District"}
+    },
+
+    {
+      "@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45",
+      "@type": "jansutra:Citizen",
+      "schema:birthDate": {"@type": "xsd:date", "@value": "1989-04-15"},
+      "jansutra:residesIn": {"@id": "geo:village/jharkhand/west-singhbhum/chakradharpur/bandgaon"},
+      "jansutra:hasSocialRecord": {"@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/social"},
+      "jansutra:hasEconomicRecord": {"@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/economic"},
+      "jansutra:hasLandHolding": {"@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/land/01"},
+      "jansutra:hasHealthRecord": {"@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/health"},
+      "jansutra:hasServiceAccessRecord": {"@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/services"}
+    },
+
+    {
+      "@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/social",
+      "@type": "jansutra:SocialRecord",
+      "jansutra:surveyYear": {"@type": "xsd:gYear", "@value": "2026"},
+      "jansutra:dataSource": "Census-2026-Caste-Enumeration",
+      "jansutra:casteCategory": {"@id": "jansutra:ST"},
+      "jansutra:genderIdentity": {"@id": "jansutra:Female"},
+      "jansutra:religion": {"@id": "jansutra:OtherReligion"},
+      "jansutra:motherTongue": {"@type": "xsd:language", "@value": "ho"}
+    },
+
+    {
+      "@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/economic",
+      "@type": "jansutra:EconomicRecord",
+      "jansutra:surveyYear": {"@type": "xsd:gYear", "@value": "2026"},
+      "jansutra:dataSource": "SECC-2026",
+      "jansutra:annualHouseholdIncome": {"@type": "xsd:decimal", "@value": "48000"},
+      "jansutra:monthlyPerCapitaExpenditure": {"@type": "xsd:decimal", "@value": "1100"},
+      "jansutra:povertyStatus": {"@id": "jansutra:BPL"},
+      "jansutra:occupationType": {"@id": "jansutra:AgriculturalLabourer"},
+      "jansutra:householdSize": {"@type": "xsd:positiveInteger", "@value": "5"},
+      "jansutra:hasMGNREGACard": {"@type": "xsd:boolean", "@value": "true"}
+    },
+
+    {
+      "@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/land/01",
+      "@type": "jansutra:LandHolding",
+      "jansutra:surveyYear": {"@type": "xsd:gYear", "@value": "2026"},
+      "jansutra:dataSource": "Jharkhand-Land-Registry-2026",
+      "jansutra:areaInHectares": {"@type": "xsd:decimal", "@value": "0.8"},
+      "jansutra:landType": {"@id": "jansutra:ForestLand"},
+      "jansutra:tenureType": {"@id": "jansutra:OwnedTitled"},
+      "jansutra:hasTitleDeed": {"@type": "xsd:boolean", "@value": "true"},
+      "jansutra:holdingLocatedIn": {"@id": "geo:village/jharkhand/west-singhbhum/chakradharpur/bandgaon"},
+      "jansutra:khasraNumber": "285/2"
+    },
+
+    {
+      "@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/health",
+      "@type": "jansutra:HealthRecord",
+      "jansutra:surveyYear": {"@type": "xsd:gYear", "@value": "2026"},
+      "jansutra:dataSource": "NFHS-6",
+      "jansutra:hasDisability": {"@type": "xsd:boolean", "@value": "false"},
+      "jansutra:hasHealthInsurance": {"@type": "xsd:boolean", "@value": "true"},
+      "jansutra:isPMAYBeneficiary": {"@type": "xsd:boolean", "@value": "true"},
+      "jansutra:isPregnantOrLactating": {"@type": "xsd:boolean", "@value": "false"},
+      "jansutra:childrenUnder5": {"@type": "xsd:nonNegativeInteger", "@value": "1"}
+    },
+
+    {
+      "@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/services",
+      "@type": "jansutra:ServiceAccessRecord",
+      "jansutra:surveyYear": {"@type": "xsd:gYear", "@value": "2026"},
+      "jansutra:dataSource": "DISHA-Dashboard-2026",
+      "jansutra:hasServiceAccess": [
+        {"@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/services/water"},
+        {"@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/services/electricity"},
+        {"@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/services/toilet"},
+        {"@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/services/road"},
+        {"@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/services/phc"},
+        {"@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/services/internet"}
+      ]
+    },
+    {
+      "@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/services/water",
+      "@type": "jansutra:ServiceAccess",
+      "jansutra:accessType": {"@id": "jansutra:SafeWaterSource"},
+      "jansutra:accessQuality": {"@id": "jansutra:Absent"},
+      "jansutra:distanceInKm": {"@type": "xsd:decimal", "@value": "4.5"}
+    },
+    {
+      "@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/services/electricity",
+      "@type": "jansutra:ServiceAccess",
+      "jansutra:accessType": {"@id": "jansutra:GridElectricity"},
+      "jansutra:accessQuality": {"@id": "jansutra:Intermittent"}
+    },
+    {
+      "@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/services/toilet",
+      "@type": "jansutra:ServiceAccess",
+      "jansutra:accessType": {"@id": "jansutra:HouseholdToilet"},
+      "jansutra:accessQuality": {"@id": "jansutra:Reliable"}
+    },
+    {
+      "@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/services/road",
+      "@type": "jansutra:ServiceAccess",
+      "jansutra:accessType": {"@id": "jansutra:PavedRoad"},
+      "jansutra:accessQuality": {"@id": "jansutra:Absent"},
+      "jansutra:distanceInKm": {"@type": "xsd:decimal", "@value": "12.0"}
+    },
+    {
+      "@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/services/phc",
+      "@type": "jansutra:ServiceAccess",
+      "jansutra:accessType": {"@id": "jansutra:PHCAccess"},
+      "jansutra:accessQuality": {"@id": "jansutra:Absent"},
+      "jansutra:distanceInKm": {"@type": "xsd:decimal", "@value": "18.5"}
+    },
+    {
+      "@id": "citizen:f7a3d2b1-4e89-4c56-a123-9b0c12de3f45/services/internet",
+      "@type": "jansutra:ServiceAccess",
+      "jansutra:accessType": {"@id": "jansutra:BroadbandInternet"},
+      "jansutra:accessQuality": {"@id": "jansutra:Absent"}
+    }
+
+  ]
+}

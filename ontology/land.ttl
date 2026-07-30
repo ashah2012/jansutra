@@ -1,0 +1,119 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix jansutra: <https://jansutra.in/vocab/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+jansutra:CommunalCommons a skos:Concept ;
+    skos:inScheme jansutra:TenureTypeScheme ;
+    skos:notation "COMM" ;
+    skos:prefLabel "Communal Commons / Gram Sabha land"@en,
+        "सामुदायिक भूमि"@hi .
+
+jansutra:DrylandRainfed a skos:Concept ;
+    skos:inScheme jansutra:LandTypeScheme ;
+    skos:notation "DRY" ;
+    skos:prefLabel "Dryland / Rainfed"@en,
+        "वर्षाश्रित भूमि"@hi .
+
+jansutra:Encroached a skos:Concept ;
+    skos:inScheme jansutra:TenureTypeScheme ;
+    skos:notation "ENC" ;
+    skos:prefLabel "Encroached (informal, contested)"@en,
+        "अतिक्रमण"@hi .
+
+jansutra:ForestLand a skos:Concept ;
+    skos:inScheme jansutra:LandTypeScheme ;
+    skos:notation "FOREST" ;
+    skos:note "Land recognized under the Forest Rights Act 2006 (individual or community forest rights)."@en ;
+    skos:prefLabel "Forest Land (FRA title)"@en,
+        "वन भूमि (FRA पट्टा)"@hi .
+
+jansutra:HomsteadLand a skos:Concept ;
+    skos:inScheme jansutra:LandTypeScheme ;
+    skos:notation "HOME" ;
+    skos:prefLabel "Homestead / House Site"@en,
+        "घरेलू भूमि"@hi .
+
+jansutra:IrrigatedLand a skos:Concept ;
+    skos:inScheme jansutra:LandTypeScheme ;
+    skos:notation "IRRIG" ;
+    skos:prefLabel "Net Irrigated Land"@en,
+        "सिंचित भूमि"@hi .
+
+jansutra:Leased a skos:Concept ;
+    skos:inScheme jansutra:TenureTypeScheme ;
+    skos:notation "LEASE" ;
+    skos:prefLabel "Leased-in (formal contract)"@en,
+        "पट्टे पर"@hi .
+
+jansutra:OwnedTitled a skos:Concept ;
+    skos:inScheme jansutra:TenureTypeScheme ;
+    skos:notation "OWN-T" ;
+    skos:prefLabel "Owned with registered title"@en,
+        "पंजीकृत स्वामित्व"@hi .
+
+jansutra:OwnedUntitled a skos:Concept ;
+    skos:inScheme jansutra:TenureTypeScheme ;
+    skos:notation "OWN-U" ;
+    skos:note "Common for tribal communities operating under customary tenure before FRA recognition."@en ;
+    skos:prefLabel "Owned without registered title (customary)"@en,
+        "बिना पंजीकरण के स्वामित्व"@hi .
+
+jansutra:Sharecropped a skos:Concept ;
+    skos:inScheme jansutra:TenureTypeScheme ;
+    skos:notation "SHARE" ;
+    skos:prefLabel "Sharecropped / Batai"@en,
+        "बटाईदारी"@hi .
+
+jansutra:WastelandFallow a skos:Concept ;
+    skos:inScheme jansutra:LandTypeScheme ;
+    skos:notation "FALLOW" ;
+    skos:prefLabel "Wasteland / Fallow"@en,
+        "बंजर / परती भूमि"@hi .
+
+jansutra:areaInHectares a owl:DatatypeProperty ;
+    rdfs:label "area in hectares"@en ;
+    rdfs:domain jansutra:LandHolding ;
+    rdfs:range xsd:decimal .
+
+jansutra:hasTitleDeed a owl:DatatypeProperty ;
+    rdfs:label "has registered title deed"@en ;
+    rdfs:domain jansutra:LandHolding ;
+    rdfs:range xsd:boolean .
+
+jansutra:holdingLocatedIn a owl:ObjectProperty ;
+    rdfs:label "holding located in"@en ;
+    rdfs:comment "Village or ward where this parcel is physically located (may differ from citizen's residence)."@en ;
+    rdfs:domain jansutra:LandHolding ;
+    rdfs:range jansutra:AdministrativeUnit .
+
+jansutra:khasraNumber a owl:DatatypeProperty ;
+    rdfs:label "Khasra / survey number"@en ;
+    rdfs:comment "Revenue record parcel identifier (Khasra in most states; Survey Number in southern states). Enables cross-referencing with state land registries."@en ;
+    rdfs:domain jansutra:LandHolding ;
+    rdfs:range xsd:string .
+
+jansutra:landType a owl:ObjectProperty ;
+    rdfs:label "land type"@en ;
+    rdfs:domain jansutra:LandHolding ;
+    rdfs:range skos:Concept .
+
+jansutra:tenureType a owl:ObjectProperty ;
+    rdfs:label "tenure type"@en ;
+    rdfs:domain jansutra:LandHolding ;
+    rdfs:range skos:Concept .
+
+jansutra:LandTypeScheme a skos:ConceptScheme ;
+    dcterms:title "Land Use / Agricultural Type"@en .
+
+jansutra:LandHolding a owl:Class ;
+    rdfs:label "Land Holding"@en,
+        "भू-जोत"@hi ;
+    rdfs:comment "A single parcel of land associated with a citizen. One citizen may have zero or more LandHolding instances across different locations or tenure types."@en ;
+    rdfs:subClassOf jansutra:VulnerabilityDimension .
+
+jansutra:TenureTypeScheme a skos:ConceptScheme ;
+    dcterms:title "Land Tenure Type"@en .
+

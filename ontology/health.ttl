@@ -1,0 +1,107 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dpv: <https://w3id.org/dpv#> .
+@prefix jansutra: <https://jansutra.in/vocab/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+jansutra:HearingImpairment a skos:Concept ;
+    skos:inScheme jansutra:DisabilityTypeScheme ;
+    skos:notation "HEAR" ;
+    skos:prefLabel "Hearing Impairment / Deafness"@en,
+        "श्रवण दोष"@hi .
+
+jansutra:IntellectualDisability a skos:Concept ;
+    skos:inScheme jansutra:DisabilityTypeScheme ;
+    skos:notation "INTEL" ;
+    skos:prefLabel "Intellectual Disability"@en,
+        "बौद्धिक दोष"@hi .
+
+jansutra:LocomotorImpairment a skos:Concept ;
+    skos:inScheme jansutra:DisabilityTypeScheme ;
+    skos:notation "LOCO" ;
+    skos:prefLabel "Locomotor Disability"@en,
+        "चलन दोष"@hi .
+
+jansutra:MentalIllness a skos:Concept ;
+    skos:inScheme jansutra:DisabilityTypeScheme ;
+    skos:notation "MENTAL" ;
+    skos:prefLabel "Mental Illness"@en,
+        "मानसिक रोग"@hi ;
+    dpv:hasPersonalDataCategory dpv:SensitivePersonalData .
+
+jansutra:MultipleDisabilities a skos:Concept ;
+    skos:inScheme jansutra:DisabilityTypeScheme ;
+    skos:notation "MULTI" ;
+    skos:prefLabel "Multiple Disabilities"@en,
+        "बहु दिव्यांगता"@hi .
+
+jansutra:NoDisability a skos:Concept ;
+    skos:inScheme jansutra:DisabilityTypeScheme ;
+    skos:notation "NONE" ;
+    skos:prefLabel "No Disability"@en,
+        "कोई दिव्यांगता नहीं"@hi .
+
+jansutra:OtherDisability a skos:Concept ;
+    skos:inScheme jansutra:DisabilityTypeScheme ;
+    skos:notation "OTHER" ;
+    skos:prefLabel "Other Specified Disability (RPWD 2016)"@en .
+
+jansutra:VisualImpairment a skos:Concept ;
+    skos:inScheme jansutra:DisabilityTypeScheme ;
+    skos:notation "VIS" ;
+    skos:prefLabel "Visual Impairment / Blindness"@en,
+        "दृष्टि दोष"@hi .
+
+jansutra:childrenUnder5 a owl:DatatypeProperty ;
+    rdfs:label "children under 5 in household"@en ;
+    rdfs:comment "Count of children aged 0–59 months — primary targeting criterion for ICDS / nutrition mission interventions."@en ;
+    rdfs:domain jansutra:HealthRecord ;
+    rdfs:range xsd:nonNegativeInteger .
+
+jansutra:disabilityBenchmark a owl:DatatypeProperty ;
+    rdfs:label "disability benchmark (%)"@en ;
+    rdfs:comment "Assessed percentage disability as per RPWD Act (0–100). ≥40% qualifies for most scheme benefits."@en ;
+    rdfs:domain jansutra:HealthRecord ;
+    rdfs:range xsd:decimal .
+
+jansutra:disabilityType a owl:ObjectProperty ;
+    rdfs:label "disability type"@en ;
+    rdfs:domain jansutra:HealthRecord ;
+    rdfs:range skos:Concept .
+
+jansutra:hasDisability a owl:DatatypeProperty ;
+    rdfs:label "has disability"@en ;
+    rdfs:comment "True if the citizen has any disability recognised under the RPWD Act 2016. If true, disabilityType must be provided."@en ;
+    rdfs:domain jansutra:HealthRecord ;
+    rdfs:range xsd:boolean .
+
+jansutra:hasHealthInsurance a owl:DatatypeProperty ;
+    rdfs:label "has health insurance"@en ;
+    rdfs:comment "Whether the citizen is covered by any health insurance — government scheme (PM-JAY / Ayushman Bharat) or private."@en ;
+    rdfs:domain jansutra:HealthRecord ;
+    rdfs:range xsd:boolean .
+
+jansutra:isPMAYBeneficiary a owl:DatatypeProperty ;
+    rdfs:label "is PM-JAY / Ayushman Bharat beneficiary"@en ;
+    rdfs:domain jansutra:HealthRecord ;
+    rdfs:range xsd:boolean .
+
+jansutra:isPregnantOrLactating a owl:DatatypeProperty ;
+    rdfs:label "is pregnant or lactating (at time of survey)"@en ;
+    rdfs:comment "Relevant for PMMVY maternity benefit eligibility and ICDS nutrition targeting."@en ;
+    rdfs:domain jansutra:HealthRecord ;
+    rdfs:range xsd:boolean .
+
+jansutra:HealthRecord a owl:Class ;
+    rdfs:label "Health Record"@en,
+        "स्वास्थ्य अभिलेख"@hi ;
+    rdfs:comment "Functional health status dimensions relevant to welfare eligibility and vulnerability scoring. Not a clinical record — no diagnoses, prescriptions, or treatment history."@en ;
+    rdfs:subClassOf jansutra:VulnerabilityDimension ;
+    dpv:hasPersonalDataCategory dpv:SensitivePersonalData .
+
+jansutra:DisabilityTypeScheme a skos:ConceptScheme ;
+    dcterms:description "21 categories under Rights of Persons with Disabilities Act 2016 (RPWD Act). This scheme lists the top-level groupings used for welfare targeting; sub-type specificity is captured in jansutra:disabilityDetail."@en ;
+    dcterms:title "Disability Type Classification"@en .
+

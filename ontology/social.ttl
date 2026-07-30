@@ -1,0 +1,178 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dpv: <https://w3id.org/dpv#> .
+@prefix jansutra: <https://jansutra.in/vocab/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+jansutra:Buddhist a skos:Concept ;
+    skos:inScheme jansutra:ReligionScheme ;
+    skos:notation "5" ;
+    skos:prefLabel "Buddhist"@en,
+        "बौद्ध"@hi .
+
+jansutra:Christian a skos:Concept ;
+    skos:inScheme jansutra:ReligionScheme ;
+    skos:notation "3" ;
+    skos:prefLabel "Christian"@en,
+        "ईसाई"@hi .
+
+jansutra:DNT a skos:Concept ;
+    skos:broader jansutra:NT ;
+    skos:inScheme jansutra:CasteCategoryScheme ;
+    skos:notation "DNT" ;
+    skos:prefLabel "De-Notified Tribe"@en,
+        "विमुक्त जनजाति"@hi .
+
+jansutra:EWS a skos:Concept ;
+    skos:inScheme jansutra:CasteCategoryScheme ;
+    skos:notation "EWS" ;
+    skos:note "103rd Constitutional Amendment category; distinct from caste-based categories."@en ;
+    skos:prefLabel "Economically Weaker Section (General)"@en,
+        "आर्थिक रूप से कमजोर वर्ग (सामान्य)"@hi .
+
+jansutra:Female a skos:Concept ;
+    skos:inScheme jansutra:GenderIdentityScheme ;
+    skos:notation "F" ;
+    skos:prefLabel "Female"@en,
+        "महिला"@hi ;
+    skos:topConceptOf jansutra:GenderIdentityScheme .
+
+jansutra:General a skos:Concept ;
+    skos:inScheme jansutra:CasteCategoryScheme ;
+    skos:notation "GEN" ;
+    skos:prefLabel "General (Unreserved)"@en,
+        "सामान्य (अनारक्षित)"@hi .
+
+jansutra:Hindu a skos:Concept ;
+    skos:inScheme jansutra:ReligionScheme ;
+    skos:notation "1" ;
+    skos:prefLabel "Hindu"@en,
+        "हिन्दू"@hi .
+
+jansutra:Jain a skos:Concept ;
+    skos:inScheme jansutra:ReligionScheme ;
+    skos:notation "6" ;
+    skos:prefLabel "Jain"@en,
+        "जैन"@hi .
+
+jansutra:Male a skos:Concept ;
+    skos:inScheme jansutra:GenderIdentityScheme ;
+    skos:notation "M" ;
+    skos:prefLabel "Male"@en,
+        "पुरुष"@hi ;
+    skos:topConceptOf jansutra:GenderIdentityScheme .
+
+jansutra:Muslim a skos:Concept ;
+    skos:inScheme jansutra:ReligionScheme ;
+    skos:notation "2" ;
+    skos:prefLabel "Muslim"@en,
+        "मुस्लिम"@hi .
+
+jansutra:NoReligion a skos:Concept ;
+    skos:inScheme jansutra:ReligionScheme ;
+    skos:notation "9" ;
+    skos:prefLabel "No Religion Stated"@en .
+
+jansutra:OBCCentral a skos:Concept ;
+    skos:inScheme jansutra:CasteCategoryScheme ;
+    skos:notation "OBC-C" ;
+    skos:prefLabel "Other Backward Class (Central List)"@en,
+        "अन्य पिछड़ा वर्ग (केंद्रीय सूची)"@hi .
+
+jansutra:OBCState a skos:Concept ;
+    skos:inScheme jansutra:CasteCategoryScheme ;
+    skos:notation "OBC-S" ;
+    skos:prefLabel "Other Backward Class (State List)"@en,
+        "अन्य पिछड़ा वर्ग (राज्य सूची)"@hi .
+
+jansutra:OtherReligion a skos:Concept ;
+    skos:inScheme jansutra:ReligionScheme ;
+    skos:notation "7" ;
+    skos:prefLabel "Other Religion / Persuasion"@en .
+
+jansutra:PreferNotToDisclose a skos:Concept ;
+    skos:inScheme jansutra:GenderIdentityScheme ;
+    skos:notation "X" ;
+    skos:prefLabel "Prefer not to disclose"@en .
+
+jansutra:SC a skos:Concept ;
+    skos:inScheme jansutra:CasteCategoryScheme ;
+    skos:notation "SC" ;
+    skos:prefLabel "Scheduled Caste"@en,
+        "अनुसूचित जाति"@hi ;
+    skos:topConceptOf jansutra:CasteCategoryScheme .
+
+jansutra:ST a skos:Concept ;
+    skos:inScheme jansutra:CasteCategoryScheme ;
+    skos:notation "ST" ;
+    skos:prefLabel "Scheduled Tribe"@en,
+        "अनुसूचित जनजाति"@hi ;
+    skos:topConceptOf jansutra:CasteCategoryScheme .
+
+jansutra:Sikh a skos:Concept ;
+    skos:inScheme jansutra:ReligionScheme ;
+    skos:notation "4" ;
+    skos:prefLabel "Sikh"@en,
+        "सिख"@hi .
+
+jansutra:ThirdGender a skos:Concept ;
+    skos:inScheme jansutra:GenderIdentityScheme ;
+    skos:notation "T" ;
+    skos:note "Recognized per NALSA v. Union of India (2014) and Transgender Persons (Protection of Rights) Act 2019."@en ;
+    skos:prefLabel "Third Gender / Transgender"@en,
+        "तृतीय लिंग / ट्रांसजेंडर"@hi .
+
+jansutra:casteCategory a owl:ObjectProperty ;
+    rdfs:label "caste category"@en ;
+    rdfs:comment "Constitutional category of the citizen's household; must be a concept in jansutra:CasteCategoryScheme."@en ;
+    rdfs:domain jansutra:SocialRecord ;
+    rdfs:range skos:Concept ;
+    dpv:hasPersonalDataCategory dpv:SensitivePersonalData .
+
+jansutra:genderIdentity a owl:ObjectProperty ;
+    rdfs:label "gender identity"@en ;
+    rdfs:domain jansutra:SocialRecord ;
+    rdfs:range skos:Concept ;
+    dpv:hasPersonalDataCategory dpv:SensitivePersonalData .
+
+jansutra:motherTongue a owl:DatatypeProperty ;
+    rdfs:label "mother tongue (BCP47)"@en ;
+    rdfs:comment "BCP 47 language tag of the citizen's declared mother tongue (e.g. hi, bn, te, mr, ta). Relevant for multilingual welfare delivery."@en ;
+    rdfs:domain jansutra:SocialRecord ;
+    rdfs:range xsd:language .
+
+jansutra:religion a owl:ObjectProperty ;
+    rdfs:label "religion"@en ;
+    rdfs:domain jansutra:SocialRecord ;
+    rdfs:range skos:Concept ;
+    dpv:hasPersonalDataCategory dpv:SensitivePersonalData .
+
+jansutra:NT a skos:Concept ;
+    skos:inScheme jansutra:CasteCategoryScheme ;
+    skos:notation "NT" ;
+    skos:note "Historically denotified or nomadic tribes; classification varies by state."@en ;
+    skos:prefLabel "Nomadic Tribe"@en,
+        "घुमंतू जनजाति"@hi .
+
+jansutra:SocialRecord a owl:Class ;
+    rdfs:label "Social Record"@en,
+        "सामाजिक अभिलेख"@hi ;
+    rdfs:comment "Captures constitutional category (caste), gender identity, and religion for a citizen. Marked as sensitive personal data under the DPDP Act 2023."@en ;
+    rdfs:subClassOf jansutra:VulnerabilityDimension ;
+    dpv:hasLegalBasis "Digital Personal Data Protection Act 2023, Schedules 1–2 (sensitive personal data — caste, religion)"@en ;
+    dpv:hasPersonalDataCategory dpv:SensitivePersonalData .
+
+jansutra:GenderIdentityScheme a skos:ConceptScheme ;
+    dcterms:description "Aligned with Census 2011 categories and expanded per NALSA v. Union of India (2014) to include third gender. Coded for welfare eligibility matching only."@en ;
+    dcterms:title "Gender Identity Classification"@en .
+
+jansutra:ReligionScheme a skos:ConceptScheme ;
+    dcterms:description "Census 2011 religion codes."@en ;
+    dcterms:title "Religion Classification"@en .
+
+jansutra:CasteCategoryScheme a skos:ConceptScheme ;
+    dcterms:description "Classification aligned with Articles 341 (SC), 342 (ST), and administrative OBC/General/NT/DNT categories. Sub-caste enumeration is intentionally out of scope; this scheme captures only the broad constitutional category used for welfare targeting."@en ;
+    dcterms:title "Constitutional Caste Category Classification"@en .
+

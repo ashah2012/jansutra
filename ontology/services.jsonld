@@ -1,0 +1,220 @@
+{
+  "@context": "./context/jansutra.context.jsonld",
+  "@graph": [
+    {
+      "@id": "jansutra:ServiceAccessRecord",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": {"@id": "jansutra:VulnerabilityDimension"},
+      "rdfs:label": [
+        {"@value": "Service Access Record", "@language": "en"},
+        {"@value": "सेवा पहुँच अभिलेख", "@language": "hi"}
+      ],
+      "rdfs:comment": {
+        "@value": "Captures household access to basic public services and infrastructure. Each individual service access claim is an instance of jansutra:ServiceAccess linked via jansutra:hasServiceAccess.",
+        "@language": "en"
+      }
+    },
+
+    {
+      "@id": "jansutra:ServiceAccess",
+      "@type": "owl:Class",
+      "rdfs:label": [
+        {"@value": "Service Access (individual claim)", "@language": "en"},
+        {"@value": "सेवा पहुँच (एकल दावा)", "@language": "hi"}
+      ],
+      "rdfs:comment": {
+        "@value": "A single access claim for one service type: e.g., 'has piped water, intermittent quality'.",
+        "@language": "en"
+      }
+    },
+
+    {
+      "@id": "jansutra:ServiceTypeScheme",
+      "@type": "skos:ConceptScheme",
+      "dcterms:title": {"@value": "Basic Public Service Types", "@language": "en"},
+      "dcterms:description": {
+        "@value": "Canonical list of services surveyed for welfare and vulnerability assessment, aligned with SDG 6, 7, and India's DISHA monitoring framework.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:PipedWater",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Piped Drinking Water (Har Ghar Jal)", "@language": "en"},
+        {"@value": "नल का पानी", "@language": "hi"}
+      ],
+      "skos:notation": "WATER-PIPE",
+      "skos:inScheme": {"@id": "jansutra:ServiceTypeScheme"}
+    },
+    {
+      "@id": "jansutra:SafeWaterSource",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Safe Water Source (handpump / borewell / protected well)", "@language": "en"},
+        {"@value": "सुरक्षित जल स्रोत", "@language": "hi"}
+      ],
+      "skos:notation": "WATER-SAFE",
+      "skos:inScheme": {"@id": "jansutra:ServiceTypeScheme"},
+      "skos:broader": {"@id": "jansutra:PipedWater"}
+    },
+    {
+      "@id": "jansutra:GridElectricity",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Grid Electricity (SAUBHAGYA / RGGVY)", "@language": "en"},
+        {"@value": "बिजली (ग्रिड)", "@language": "hi"}
+      ],
+      "skos:notation": "ELEC",
+      "skos:inScheme": {"@id": "jansutra:ServiceTypeScheme"}
+    },
+    {
+      "@id": "jansutra:HouseholdToilet",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Household Toilet (SBM-G / SBM-U)", "@language": "en"},
+        {"@value": "शौचालय", "@language": "hi"}
+      ],
+      "skos:notation": "TOILET",
+      "skos:inScheme": {"@id": "jansutra:ServiceTypeScheme"}
+    },
+    {
+      "@id": "jansutra:PavedRoad",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "All-weather Paved Road (PMGSY)", "@language": "en"},
+        {"@value": "पक्की सड़क", "@language": "hi"}
+      ],
+      "skos:notation": "ROAD",
+      "skos:inScheme": {"@id": "jansutra:ServiceTypeScheme"}
+    },
+    {
+      "@id": "jansutra:BroadbandInternet",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Broadband Internet (BharatNet / mobile 4G+)", "@language": "en"},
+        {"@value": "इंटरनेट", "@language": "hi"}
+      ],
+      "skos:notation": "INTERNET",
+      "skos:inScheme": {"@id": "jansutra:ServiceTypeScheme"}
+    },
+    {
+      "@id": "jansutra:PrimarySchoolAccess",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Primary School within 1 km", "@language": "en"},
+        {"@value": "प्राथमिक विद्यालय (1 किमी में)", "@language": "hi"}
+      ],
+      "skos:notation": "SCH-P",
+      "skos:inScheme": {"@id": "jansutra:ServiceTypeScheme"}
+    },
+    {
+      "@id": "jansutra:SecondarySchoolAccess",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Secondary School within 5 km", "@language": "en"},
+        {"@value": "माध्यमिक विद्यालय (5 किमी में)", "@language": "hi"}
+      ],
+      "skos:notation": "SCH-S",
+      "skos:inScheme": {"@id": "jansutra:ServiceTypeScheme"}
+    },
+    {
+      "@id": "jansutra:PHCAccess",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Primary Health Centre (PHC) within 10 km", "@language": "en"},
+        {"@value": "प्राथमिक स्वास्थ्य केंद्र (10 किमी में)", "@language": "hi"}
+      ],
+      "skos:notation": "PHC",
+      "skos:inScheme": {"@id": "jansutra:ServiceTypeScheme"}
+    },
+    {
+      "@id": "jansutra:AnganwadiAccess",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Anganwadi / ICDS Centre within 1 km", "@language": "en"},
+        {"@value": "आंगनवाड़ी केंद्र (1 किमी में)", "@language": "hi"}
+      ],
+      "skos:notation": "AWC",
+      "skos:inScheme": {"@id": "jansutra:ServiceTypeScheme"}
+    },
+    {
+      "@id": "jansutra:BankBranchAccess",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Bank Branch / Business Correspondent within 5 km", "@language": "en"},
+        {"@value": "बैंक / BC केंद्र (5 किमी में)", "@language": "hi"}
+      ],
+      "skos:notation": "BANK",
+      "skos:inScheme": {"@id": "jansutra:ServiceTypeScheme"}
+    },
+
+    {
+      "@id": "jansutra:AccessQualityScheme",
+      "@type": "skos:ConceptScheme",
+      "dcterms:title": {"@value": "Service Access Quality / Reliability", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:Reliable",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Reliable (≥20 hours/day for utilities)", "@language": "en"}, {"@value": "विश्वसनीय", "@language": "hi"}],
+      "skos:notation": "REL",
+      "skos:inScheme": {"@id": "jansutra:AccessQualityScheme"}
+    },
+    {
+      "@id": "jansutra:Intermittent",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Intermittent / Seasonal", "@language": "en"}, {"@value": "अनियमित", "@language": "hi"}],
+      "skos:notation": "INT",
+      "skos:inScheme": {"@id": "jansutra:AccessQualityScheme"}
+    },
+    {
+      "@id": "jansutra:Absent",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Absent / No access", "@language": "en"}, {"@value": "अनुपलब्ध", "@language": "hi"}],
+      "skos:notation": "ABS",
+      "skos:inScheme": {"@id": "jansutra:AccessQualityScheme"}
+    },
+
+    {
+      "@id": "jansutra:hasServiceAccess",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "jansutra:ServiceAccessRecord"},
+      "rdfs:range": {"@id": "jansutra:ServiceAccess"},
+      "rdfs:label": {"@value": "has service access", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:accessType",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "jansutra:ServiceAccess"},
+      "rdfs:range": {"@id": "skos:Concept"},
+      "rdfs:label": {"@value": "access type", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Which service is being assessed; must be a concept in jansutra:ServiceTypeScheme.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:accessQuality",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "jansutra:ServiceAccess"},
+      "rdfs:range": {"@id": "skos:Concept"},
+      "rdfs:label": {"@value": "access quality", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Reliability / quality level; must be a concept in jansutra:AccessQualityScheme.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:distanceInKm",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:ServiceAccess"},
+      "rdfs:range": {"@id": "xsd:decimal"},
+      "rdfs:label": {"@value": "distance in km (nearest facility)", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Walking distance to the nearest facility of this service type. Only applicable to proximity-based services (school, PHC, bank, anganwadi).",
+        "@language": "en"
+      }
+    }
+  ]
+}

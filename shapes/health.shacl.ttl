@@ -1,0 +1,80 @@
+@prefix sh:       <http://www.w3.org/ns/shacl#> .
+@prefix jansutra: <https://jansutra.in/vocab/> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+
+jansutra:HealthRecordShape
+    a sh:NodeShape ;
+    sh:targetClass jansutra:HealthRecord ;
+
+    sh:property [
+        sh:path jansutra:hasDisability ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean ;
+    ] ;
+
+    sh:property [
+        sh:path jansutra:disabilityType ;
+        sh:maxCount 1 ;
+        sh:class skos:Concept ;
+        sh:node jansutra:DisabilityTypeConceptShape ;
+    ] ;
+
+    sh:property [
+        sh:path jansutra:disabilityBenchmark ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 100 ;
+        sh:message "Disability benchmark must be a percentage between 0 and 100." ;
+    ] ;
+
+    sh:property [
+        sh:path jansutra:hasHealthInsurance ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean ;
+    ] ;
+
+    sh:property [
+        sh:path jansutra:isPMAYBeneficiary ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean ;
+    ] ;
+
+    sh:property [
+        sh:path jansutra:isPregnantOrLactating ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean ;
+    ] ;
+
+    sh:property [
+        sh:path jansutra:childrenUnder5 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:maxInclusive 10 ;
+    ] .
+
+
+# If hasDisability is true, disabilityType must be provided.
+jansutra:DisabilityTypePresentRule
+    a sh:NodeShape ;
+    sh:targetClass jansutra:HealthRecord ;
+    sh:sparql [
+        sh:message "When hasDisability is true, disabilityType must be provided." ;
+        sh:select """
+            PREFIX jansutra: <https://jansutra.in/vocab/>
+            SELECT $this WHERE {
+                $this jansutra:hasDisability true .
+                FILTER NOT EXISTS { $this jansutra:disabilityType ?t }
+            }
+        """ ;
+    ] .
+
+
+jansutra:DisabilityTypeConceptShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path skos:inScheme ;
+        sh:minCount 1 ;
+        sh:hasValue jansutra:DisabilityTypeScheme ;
+    ] .

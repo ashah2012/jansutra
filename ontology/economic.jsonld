@@ -1,0 +1,206 @@
+{
+  "@context": "./context/jansutra.context.jsonld",
+  "@graph": [
+    {
+      "@id": "jansutra:EconomicRecord",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": {"@id": "jansutra:VulnerabilityDimension"},
+      "rdfs:label": [
+        {"@value": "Economic Record", "@language": "en"},
+        {"@value": "आर्थिक अभिलेख", "@language": "hi"}
+      ],
+      "rdfs:comment": {
+        "@value": "Point-in-time household economic status: income, poverty classification, occupation, and household composition.",
+        "@language": "en"
+      }
+    },
+
+    {
+      "@id": "jansutra:PovertyStatusScheme",
+      "@type": "skos:ConceptScheme",
+      "dcterms:title": {"@value": "Household Poverty Status", "@language": "en"},
+      "dcterms:description": {
+        "@value": "Administrative classification determining eligibility for food security and poverty-linked schemes (NFSA 2013, PMAY-G, etc.).",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:BPL",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Below Poverty Line", "@language": "en"},
+        {"@value": "गरीबी रेखा से नीचे", "@language": "hi"}
+      ],
+      "skos:notation": "BPL",
+      "skos:inScheme": {"@id": "jansutra:PovertyStatusScheme"},
+      "skos:topConceptOf": {"@id": "jansutra:PovertyStatusScheme"}
+    },
+    {
+      "@id": "jansutra:APL",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Above Poverty Line", "@language": "en"},
+        {"@value": "गरीबी रेखा से ऊपर", "@language": "hi"}
+      ],
+      "skos:notation": "APL",
+      "skos:inScheme": {"@id": "jansutra:PovertyStatusScheme"},
+      "skos:topConceptOf": {"@id": "jansutra:PovertyStatusScheme"}
+    },
+    {
+      "@id": "jansutra:Antyodaya",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Antyodaya (Destitute BPL)", "@language": "en"},
+        {"@value": "अंत्योदय", "@language": "hi"}
+      ],
+      "skos:notation": "AAY",
+      "skos:inScheme": {"@id": "jansutra:PovertyStatusScheme"},
+      "skos:broader": {"@id": "jansutra:BPL"},
+      "skos:note": {
+        "@value": "Poorest of the poor households as identified under Antyodaya Anna Yojana; subset of BPL.",
+        "@language": "en"
+      }
+    },
+
+    {
+      "@id": "jansutra:OccupationTypeScheme",
+      "@type": "skos:ConceptScheme",
+      "dcterms:title": {"@value": "Occupation Type Classification", "@language": "en"},
+      "dcterms:description": {
+        "@value": "Primary livelihood type of the household's main earner. Aligns with SECC 2011 occupation categories.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:AgriculturalLabourer",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Agricultural Labourer", "@language": "en"},
+        {"@value": "कृषि मजदूर", "@language": "hi"}
+      ],
+      "skos:notation": "AGR-LAB",
+      "skos:inScheme": {"@id": "jansutra:OccupationTypeScheme"}
+    },
+    {
+      "@id": "jansutra:MarginalFarmer",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Marginal / Small Farmer (owner-cultivator)", "@language": "en"},
+        {"@value": "सीमांत / लघु किसान", "@language": "hi"}
+      ],
+      "skos:notation": "FARM-SM",
+      "skos:inScheme": {"@id": "jansutra:OccupationTypeScheme"},
+      "skos:note": {"@value": "Landholding ≤ 2 hectares.", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:MediumLargeFarmer",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Medium / Large Farmer (owner-cultivator)", "@language": "en"},
+        {"@value": "मध्यम / बड़े किसान", "@language": "hi"}
+      ],
+      "skos:notation": "FARM-LG",
+      "skos:inScheme": {"@id": "jansutra:OccupationTypeScheme"},
+      "skos:note": {"@value": "Landholding > 2 hectares.", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:ManualLabourer",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Non-agricultural Manual Labourer", "@language": "en"},
+        {"@value": "गैर-कृषि मजदूर", "@language": "hi"}
+      ],
+      "skos:notation": "MAN-LAB",
+      "skos:inScheme": {"@id": "jansutra:OccupationTypeScheme"}
+    },
+    {
+      "@id": "jansutra:SalariedEmployee",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Salaried Employee", "@language": "en"},
+        {"@value": "वेतनभोगी", "@language": "hi"}
+      ],
+      "skos:notation": "SALARIED",
+      "skos:inScheme": {"@id": "jansutra:OccupationTypeScheme"}
+    },
+    {
+      "@id": "jansutra:SelfEmployed",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Self-employed / Petty Trade", "@language": "en"},
+        {"@value": "स्व-रोजगार / छोटा व्यापार", "@language": "hi"}
+      ],
+      "skos:notation": "SELF-EMP",
+      "skos:inScheme": {"@id": "jansutra:OccupationTypeScheme"}
+    },
+    {
+      "@id": "jansutra:Unemployed",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Unemployed (working-age, not student)", "@language": "en"},
+        {"@value": "बेरोजगार", "@language": "hi"}
+      ],
+      "skos:notation": "UNEMP",
+      "skos:inScheme": {"@id": "jansutra:OccupationTypeScheme"}
+    },
+
+    {
+      "@id": "jansutra:annualHouseholdIncome",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:EconomicRecord"},
+      "rdfs:range": {"@id": "xsd:decimal"},
+      "rdfs:label": {"@value": "annual household income (INR)", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Total declared household income in Indian Rupees for the survey year. Self-reported; may be combined with imputed estimates from MPCE surveys.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:monthlyPerCapitaExpenditure",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:EconomicRecord"},
+      "rdfs:range": {"@id": "xsd:decimal"},
+      "rdfs:label": {"@value": "monthly per-capita expenditure (INR)", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "MPCE — the standard welfare economics proxy for consumption poverty (Tendulkar/Rangarajan poverty lines).",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:povertyStatus",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "jansutra:EconomicRecord"},
+      "rdfs:range": {"@id": "skos:Concept"},
+      "rdfs:label": {"@value": "poverty status", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:occupationType",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "jansutra:EconomicRecord"},
+      "rdfs:range": {"@id": "skos:Concept"},
+      "rdfs:label": {"@value": "occupation type", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Primary livelihood of the household's main earner; concept in jansutra:OccupationTypeScheme.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:householdSize",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:EconomicRecord"},
+      "rdfs:range": {"@id": "xsd:positiveInteger"},
+      "rdfs:label": {"@value": "household size", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:hasMGNREGACard",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:EconomicRecord"},
+      "rdfs:range": {"@id": "xsd:boolean"},
+      "rdfs:label": {"@value": "has MGNREGA job card", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Whether the household holds an active MGNREGA job card — a proxy for rural wage dependency.",
+        "@language": "en"
+      }
+    }
+  ]
+}

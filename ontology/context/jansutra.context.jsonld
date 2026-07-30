@@ -1,0 +1,21 @@
+{
+  "@context": {
+    "jansutra": "https://jansutra.in/vocab/",
+    "citizen": "https://jansutra.in/citizen/",
+    "geo": "https://jansutra.in/geo/",
+    "scheme": "https://jansutra.in/scheme/",
+
+    "owl":     "http://www.w3.org/2002/07/owl#",
+    "rdf":     "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs":    "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd":     "http://www.w3.org/2001/XMLSchema#",
+    "schema":  "https://schema.org/",
+    "skos":    "http://www.w3.org/2004/02/skos/core#",
+    "foaf":    "http://xmlns.com/foaf/0.1/",
+    "gsp":     "http://www.opengis.net/ont/geosparql#",
+    "dpv":     "https://w3id.org/dpv#",
+    "prov":    "http://www.w3.org/ns/prov#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "sh":      "http://www.w3.org/ns/shacl#"
+  }
+}

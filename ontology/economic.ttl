@@ -1,0 +1,121 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix jansutra: <https://jansutra.in/vocab/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+jansutra:APL a skos:Concept ;
+    skos:inScheme jansutra:PovertyStatusScheme ;
+    skos:notation "APL" ;
+    skos:prefLabel "Above Poverty Line"@en,
+        "गरीबी रेखा से ऊपर"@hi ;
+    skos:topConceptOf jansutra:PovertyStatusScheme .
+
+jansutra:AgriculturalLabourer a skos:Concept ;
+    skos:inScheme jansutra:OccupationTypeScheme ;
+    skos:notation "AGR-LAB" ;
+    skos:prefLabel "Agricultural Labourer"@en,
+        "कृषि मजदूर"@hi .
+
+jansutra:Antyodaya a skos:Concept ;
+    skos:broader jansutra:BPL ;
+    skos:inScheme jansutra:PovertyStatusScheme ;
+    skos:notation "AAY" ;
+    skos:note "Poorest of the poor households as identified under Antyodaya Anna Yojana; subset of BPL."@en ;
+    skos:prefLabel "Antyodaya (Destitute BPL)"@en,
+        "अंत्योदय"@hi .
+
+jansutra:ManualLabourer a skos:Concept ;
+    skos:inScheme jansutra:OccupationTypeScheme ;
+    skos:notation "MAN-LAB" ;
+    skos:prefLabel "Non-agricultural Manual Labourer"@en,
+        "गैर-कृषि मजदूर"@hi .
+
+jansutra:MarginalFarmer a skos:Concept ;
+    skos:inScheme jansutra:OccupationTypeScheme ;
+    skos:notation "FARM-SM" ;
+    skos:note "Landholding ≤ 2 hectares."@en ;
+    skos:prefLabel "Marginal / Small Farmer (owner-cultivator)"@en,
+        "सीमांत / लघु किसान"@hi .
+
+jansutra:MediumLargeFarmer a skos:Concept ;
+    skos:inScheme jansutra:OccupationTypeScheme ;
+    skos:notation "FARM-LG" ;
+    skos:note "Landholding > 2 hectares."@en ;
+    skos:prefLabel "Medium / Large Farmer (owner-cultivator)"@en,
+        "मध्यम / बड़े किसान"@hi .
+
+jansutra:SalariedEmployee a skos:Concept ;
+    skos:inScheme jansutra:OccupationTypeScheme ;
+    skos:notation "SALARIED" ;
+    skos:prefLabel "Salaried Employee"@en,
+        "वेतनभोगी"@hi .
+
+jansutra:SelfEmployed a skos:Concept ;
+    skos:inScheme jansutra:OccupationTypeScheme ;
+    skos:notation "SELF-EMP" ;
+    skos:prefLabel "Self-employed / Petty Trade"@en,
+        "स्व-रोजगार / छोटा व्यापार"@hi .
+
+jansutra:Unemployed a skos:Concept ;
+    skos:inScheme jansutra:OccupationTypeScheme ;
+    skos:notation "UNEMP" ;
+    skos:prefLabel "Unemployed (working-age, not student)"@en,
+        "बेरोजगार"@hi .
+
+jansutra:annualHouseholdIncome a owl:DatatypeProperty ;
+    rdfs:label "annual household income (INR)"@en ;
+    rdfs:comment "Total declared household income in Indian Rupees for the survey year. Self-reported; may be combined with imputed estimates from MPCE surveys."@en ;
+    rdfs:domain jansutra:EconomicRecord ;
+    rdfs:range xsd:decimal .
+
+jansutra:hasMGNREGACard a owl:DatatypeProperty ;
+    rdfs:label "has MGNREGA job card"@en ;
+    rdfs:comment "Whether the household holds an active MGNREGA job card — a proxy for rural wage dependency."@en ;
+    rdfs:domain jansutra:EconomicRecord ;
+    rdfs:range xsd:boolean .
+
+jansutra:householdSize a owl:DatatypeProperty ;
+    rdfs:label "household size"@en ;
+    rdfs:domain jansutra:EconomicRecord ;
+    rdfs:range xsd:positiveInteger .
+
+jansutra:monthlyPerCapitaExpenditure a owl:DatatypeProperty ;
+    rdfs:label "monthly per-capita expenditure (INR)"@en ;
+    rdfs:comment "MPCE — the standard welfare economics proxy for consumption poverty (Tendulkar/Rangarajan poverty lines)."@en ;
+    rdfs:domain jansutra:EconomicRecord ;
+    rdfs:range xsd:decimal .
+
+jansutra:occupationType a owl:ObjectProperty ;
+    rdfs:label "occupation type"@en ;
+    rdfs:comment "Primary livelihood of the household's main earner; concept in jansutra:OccupationTypeScheme."@en ;
+    rdfs:domain jansutra:EconomicRecord ;
+    rdfs:range skos:Concept .
+
+jansutra:povertyStatus a owl:ObjectProperty ;
+    rdfs:label "poverty status"@en ;
+    rdfs:domain jansutra:EconomicRecord ;
+    rdfs:range skos:Concept .
+
+jansutra:BPL a skos:Concept ;
+    skos:inScheme jansutra:PovertyStatusScheme ;
+    skos:notation "BPL" ;
+    skos:prefLabel "Below Poverty Line"@en,
+        "गरीबी रेखा से नीचे"@hi ;
+    skos:topConceptOf jansutra:PovertyStatusScheme .
+
+jansutra:PovertyStatusScheme a skos:ConceptScheme ;
+    dcterms:description "Administrative classification determining eligibility for food security and poverty-linked schemes (NFSA 2013, PMAY-G, etc.)."@en ;
+    dcterms:title "Household Poverty Status"@en .
+
+jansutra:EconomicRecord a owl:Class ;
+    rdfs:label "Economic Record"@en,
+        "आर्थिक अभिलेख"@hi ;
+    rdfs:comment "Point-in-time household economic status: income, poverty classification, occupation, and household composition."@en ;
+    rdfs:subClassOf jansutra:VulnerabilityDimension .
+
+jansutra:OccupationTypeScheme a skos:ConceptScheme ;
+    dcterms:description "Primary livelihood type of the household's main earner. Aligns with SECC 2011 occupation categories."@en ;
+    dcterms:title "Occupation Type Classification"@en .
+

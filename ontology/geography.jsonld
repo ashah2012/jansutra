@@ -1,0 +1,134 @@
+{
+  "@context": "./context/jansutra.context.jsonld",
+  "@graph": [
+    {
+      "@id": "jansutra:AdministrativeUnit",
+      "@type": "owl:Class",
+      "rdfs:label": [
+        {"@value": "Administrative Unit", "@language": "en"},
+        {"@value": "प्रशासनिक इकाई", "@language": "hi"}
+      ],
+      "rdfs:comment": {
+        "@value": "A node in India's administrative hierarchy: State/UT → District → Sub-district (Tehsil/Taluka/Block) → Village/Ward. Units at the same level are linked via skos:broader to their parent.",
+        "@language": "en"
+      }
+    },
+
+    {
+      "@id": "jansutra:AdminLevelScheme",
+      "@type": "skos:ConceptScheme",
+      "dcterms:title": {"@value": "Administrative Hierarchy Level", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:StateUT",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "State / Union Territory", "@language": "en"},
+        {"@value": "राज्य / केंद्र शासित प्रदेश", "@language": "hi"}
+      ],
+      "skos:notation": "L1",
+      "skos:inScheme": {"@id": "jansutra:AdminLevelScheme"}
+    },
+    {
+      "@id": "jansutra:District",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "District", "@language": "en"},
+        {"@value": "जिला", "@language": "hi"}
+      ],
+      "skos:notation": "L2",
+      "skos:inScheme": {"@id": "jansutra:AdminLevelScheme"},
+      "skos:broader": {"@id": "jansutra:StateUT"}
+    },
+    {
+      "@id": "jansutra:SubDistrict",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Sub-district (Tehsil / Block)", "@language": "en"},
+        {"@value": "तहसील / प्रखंड", "@language": "hi"}
+      ],
+      "skos:notation": "L3",
+      "skos:inScheme": {"@id": "jansutra:AdminLevelScheme"},
+      "skos:broader": {"@id": "jansutra:District"}
+    },
+    {
+      "@id": "jansutra:VillageWard",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Village / Ward", "@language": "en"},
+        {"@value": "ग्राम / वार्ड", "@language": "hi"}
+      ],
+      "skos:notation": "L4",
+      "skos:inScheme": {"@id": "jansutra:AdminLevelScheme"},
+      "skos:broader": {"@id": "jansutra:SubDistrict"}
+    },
+
+    {
+      "@id": "jansutra:adminLevel",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "jansutra:AdministrativeUnit"},
+      "rdfs:range": {"@id": "skos:Concept"},
+      "rdfs:label": {"@value": "admin level", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Level in the administrative hierarchy; must be a concept in jansutra:AdminLevelScheme.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:lgdCode",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:AdministrativeUnit"},
+      "rdfs:range": {"@id": "xsd:string"},
+      "rdfs:label": {"@value": "LGD code", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Local Government Directory (LGD) code assigned by MoPR — the canonical identifier for administrative units in India.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:isRemoteArea",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:AdministrativeUnit"},
+      "rdfs:range": {"@id": "xsd:boolean"},
+      "rdfs:label": {"@value": "is remote area", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "True if the unit qualifies as remote under PMGSY road connectivity criteria (no all-weather road within 5 km).",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:isPESAArea",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:AdministrativeUnit"},
+      "rdfs:range": {"@id": "xsd:boolean"},
+      "rdfs:label": {"@value": "is PESA area", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "True if the unit falls under the Fifth Schedule (PESA Act 1996) — indicating a scheduled tribal area with gram sabha self-governance rights.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:hasParentUnit",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "jansutra:AdministrativeUnit"},
+      "rdfs:range": {"@id": "jansutra:AdministrativeUnit"},
+      "rdfs:label": {"@value": "has parent unit", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Hierarchical containment: a village is contained in a sub-district, which is in a district, which is in a state/UT. Equivalent to skos:broader for the unit hierarchy.",
+        "@language": "en"
+      },
+      "owl:equivalentProperty": {"@id": "skos:broader"}
+    },
+    {
+      "@id": "jansutra:hasGeometry",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "jansutra:AdministrativeUnit"},
+      "rdfs:range": {"@id": "gsp:Geometry"},
+      "rdfs:label": {"@value": "has geometry", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "GeoSPARQL geometry (WKT polygon) for district-level and above boundaries.",
+        "@language": "en"
+      }
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+{
+  "@context": "./context/jansutra.context.jsonld",
+  "@graph": [
+    {
+      "@id": "jansutra:SocialRecord",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": {"@id": "jansutra:VulnerabilityDimension"},
+      "rdfs:label": [
+        {"@value": "Social Record", "@language": "en"},
+        {"@value": "सामाजिक अभिलेख", "@language": "hi"}
+      ],
+      "rdfs:comment": {
+        "@value": "Captures constitutional category (caste), gender identity, and religion for a citizen. Marked as sensitive personal data under the DPDP Act 2023.",
+        "@language": "en"
+      },
+      "dpv:hasPersonalDataCategory": {"@id": "dpv:SensitivePersonalData"},
+      "dpv:hasLegalBasis": {
+        "@value": "Digital Personal Data Protection Act 2023, Schedules 1–2 (sensitive personal data — caste, religion)",
+        "@language": "en"
+      }
+    },
+
+    {
+      "@id": "jansutra:CasteCategoryScheme",
+      "@type": "skos:ConceptScheme",
+      "dcterms:title": {"@value": "Constitutional Caste Category Classification", "@language": "en"},
+      "dcterms:description": {
+        "@value": "Classification aligned with Articles 341 (SC), 342 (ST), and administrative OBC/General/NT/DNT categories. Sub-caste enumeration is intentionally out of scope; this scheme captures only the broad constitutional category used for welfare targeting.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:SC",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Scheduled Caste", "@language": "en"},
+        {"@value": "अनुसूचित जाति", "@language": "hi"}
+      ],
+      "skos:notation": "SC",
+      "skos:inScheme": {"@id": "jansutra:CasteCategoryScheme"},
+      "skos:topConceptOf": {"@id": "jansutra:CasteCategoryScheme"}
+    },
+    {
+      "@id": "jansutra:ST",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Scheduled Tribe", "@language": "en"},
+        {"@value": "अनुसूचित जनजाति", "@language": "hi"}
+      ],
+      "skos:notation": "ST",
+      "skos:inScheme": {"@id": "jansutra:CasteCategoryScheme"},
+      "skos:topConceptOf": {"@id": "jansutra:CasteCategoryScheme"}
+    },
+    {
+      "@id": "jansutra:OBCCentral",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Other Backward Class (Central List)", "@language": "en"},
+        {"@value": "अन्य पिछड़ा वर्ग (केंद्रीय सूची)", "@language": "hi"}
+      ],
+      "skos:notation": "OBC-C",
+      "skos:inScheme": {"@id": "jansutra:CasteCategoryScheme"}
+    },
+    {
+      "@id": "jansutra:OBCState",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Other Backward Class (State List)", "@language": "en"},
+        {"@value": "अन्य पिछड़ा वर्ग (राज्य सूची)", "@language": "hi"}
+      ],
+      "skos:notation": "OBC-S",
+      "skos:inScheme": {"@id": "jansutra:CasteCategoryScheme"}
+    },
+    {
+      "@id": "jansutra:EWS",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Economically Weaker Section (General)", "@language": "en"},
+        {"@value": "आर्थिक रूप से कमजोर वर्ग (सामान्य)", "@language": "hi"}
+      ],
+      "skos:notation": "EWS",
+      "skos:inScheme": {"@id": "jansutra:CasteCategoryScheme"},
+      "skos:note": {
+        "@value": "103rd Constitutional Amendment category; distinct from caste-based categories.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:General",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "General (Unreserved)", "@language": "en"},
+        {"@value": "सामान्य (अनारक्षित)", "@language": "hi"}
+      ],
+      "skos:notation": "GEN",
+      "skos:inScheme": {"@id": "jansutra:CasteCategoryScheme"}
+    },
+    {
+      "@id": "jansutra:NT",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "Nomadic Tribe", "@language": "en"},
+        {"@value": "घुमंतू जनजाति", "@language": "hi"}
+      ],
+      "skos:notation": "NT",
+      "skos:inScheme": {"@id": "jansutra:CasteCategoryScheme"},
+      "skos:note": {
+        "@value": "Historically denotified or nomadic tribes; classification varies by state.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:DNT",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [
+        {"@value": "De-Notified Tribe", "@language": "en"},
+        {"@value": "विमुक्त जनजाति", "@language": "hi"}
+      ],
+      "skos:notation": "DNT",
+      "skos:inScheme": {"@id": "jansutra:CasteCategoryScheme"},
+      "skos:broader": {"@id": "jansutra:NT"}
+    },
+
+    {
+      "@id": "jansutra:GenderIdentityScheme",
+      "@type": "skos:ConceptScheme",
+      "dcterms:title": {"@value": "Gender Identity Classification", "@language": "en"},
+      "dcterms:description": {
+        "@value": "Aligned with Census 2011 categories and expanded per NALSA v. Union of India (2014) to include third gender. Coded for welfare eligibility matching only.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:Male",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Male", "@language": "en"}, {"@value": "पुरुष", "@language": "hi"}],
+      "skos:notation": "M",
+      "skos:inScheme": {"@id": "jansutra:GenderIdentityScheme"},
+      "skos:topConceptOf": {"@id": "jansutra:GenderIdentityScheme"}
+    },
+    {
+      "@id": "jansutra:Female",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Female", "@language": "en"}, {"@value": "महिला", "@language": "hi"}],
+      "skos:notation": "F",
+      "skos:inScheme": {"@id": "jansutra:GenderIdentityScheme"},
+      "skos:topConceptOf": {"@id": "jansutra:GenderIdentityScheme"}
+    },
+    {
+      "@id": "jansutra:ThirdGender",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Third Gender / Transgender", "@language": "en"}, {"@value": "तृतीय लिंग / ट्रांसजेंडर", "@language": "hi"}],
+      "skos:notation": "T",
+      "skos:inScheme": {"@id": "jansutra:GenderIdentityScheme"},
+      "skos:note": {
+        "@value": "Recognized per NALSA v. Union of India (2014) and Transgender Persons (Protection of Rights) Act 2019.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "jansutra:PreferNotToDisclose",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Prefer not to disclose", "@language": "en"}],
+      "skos:notation": "X",
+      "skos:inScheme": {"@id": "jansutra:GenderIdentityScheme"}
+    },
+
+    {
+      "@id": "jansutra:ReligionScheme",
+      "@type": "skos:ConceptScheme",
+      "dcterms:title": {"@value": "Religion Classification", "@language": "en"},
+      "dcterms:description": {"@value": "Census 2011 religion codes.", "@language": "en"}
+    },
+    {
+      "@id": "jansutra:Hindu",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Hindu", "@language": "en"}, {"@value": "हिन्दू", "@language": "hi"}],
+      "skos:notation": "1",
+      "skos:inScheme": {"@id": "jansutra:ReligionScheme"}
+    },
+    {
+      "@id": "jansutra:Muslim",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Muslim", "@language": "en"}, {"@value": "मुस्लिम", "@language": "hi"}],
+      "skos:notation": "2",
+      "skos:inScheme": {"@id": "jansutra:ReligionScheme"}
+    },
+    {
+      "@id": "jansutra:Christian",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Christian", "@language": "en"}, {"@value": "ईसाई", "@language": "hi"}],
+      "skos:notation": "3",
+      "skos:inScheme": {"@id": "jansutra:ReligionScheme"}
+    },
+    {
+      "@id": "jansutra:Sikh",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Sikh", "@language": "en"}, {"@value": "सिख", "@language": "hi"}],
+      "skos:notation": "4",
+      "skos:inScheme": {"@id": "jansutra:ReligionScheme"}
+    },
+    {
+      "@id": "jansutra:Buddhist",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Buddhist", "@language": "en"}, {"@value": "बौद्ध", "@language": "hi"}],
+      "skos:notation": "5",
+      "skos:inScheme": {"@id": "jansutra:ReligionScheme"}
+    },
+    {
+      "@id": "jansutra:Jain",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Jain", "@language": "en"}, {"@value": "जैन", "@language": "hi"}],
+      "skos:notation": "6",
+      "skos:inScheme": {"@id": "jansutra:ReligionScheme"}
+    },
+    {
+      "@id": "jansutra:OtherReligion",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "Other Religion / Persuasion", "@language": "en"}],
+      "skos:notation": "7",
+      "skos:inScheme": {"@id": "jansutra:ReligionScheme"}
+    },
+    {
+      "@id": "jansutra:NoReligion",
+      "@type": "skos:Concept",
+      "skos:prefLabel": [{"@value": "No Religion Stated", "@language": "en"}],
+      "skos:notation": "9",
+      "skos:inScheme": {"@id": "jansutra:ReligionScheme"}
+    },
+
+    {
+      "@id": "jansutra:casteCategory",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "jansutra:SocialRecord"},
+      "rdfs:range": {"@id": "skos:Concept"},
+      "rdfs:label": {"@value": "caste category", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "Constitutional category of the citizen's household; must be a concept in jansutra:CasteCategoryScheme.",
+        "@language": "en"
+      },
+      "dpv:hasPersonalDataCategory": {"@id": "dpv:SensitivePersonalData"}
+    },
+    {
+      "@id": "jansutra:genderIdentity",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "jansutra:SocialRecord"},
+      "rdfs:range": {"@id": "skos:Concept"},
+      "rdfs:label": {"@value": "gender identity", "@language": "en"},
+      "dpv:hasPersonalDataCategory": {"@id": "dpv:SensitivePersonalData"}
+    },
+    {
+      "@id": "jansutra:religion",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "jansutra:SocialRecord"},
+      "rdfs:range": {"@id": "skos:Concept"},
+      "rdfs:label": {"@value": "religion", "@language": "en"},
+      "dpv:hasPersonalDataCategory": {"@id": "dpv:SensitivePersonalData"}
+    },
+    {
+      "@id": "jansutra:motherTongue",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "jansutra:SocialRecord"},
+      "rdfs:range": {"@id": "xsd:language"},
+      "rdfs:label": {"@value": "mother tongue (BCP47)", "@language": "en"},
+      "rdfs:comment": {
+        "@value": "BCP 47 language tag of the citizen's declared mother tongue (e.g. hi, bn, te, mr, ta). Relevant for multilingual welfare delivery.",
+        "@language": "en"
+      }
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dpv: <https://w3id.org/dpv#> .
+@prefix jansutra: <https://jansutra.in/vocab/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+jansutra: a owl:Ontology ;
+    dcterms:description "Core citizen identity module for the Jansutra federated socioeconomic ontology. Each citizen is identified by an internal UUID URI; no Aadhaar number is stored in this model."@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:title "Jansutra Core Ontology"@en ;
+    owl:imports <http://www.w3.org/2004/02/skos/core>,
+        schema: ;
+    owl:versionInfo "0.1.0" .
+
+jansutra:dataSource a owl:DatatypeProperty ;
+    rdfs:label "data source"@en ;
+    rdfs:comment "Name or code of the survey or administrative register that originated this record (e.g. SECC-2026, NFHS-6, state-land-registry)."@en ;
+    rdfs:domain jansutra:VulnerabilityDimension ;
+    rdfs:range xsd:string .
+
+jansutra:hasEconomicRecord a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has economic record"@en ;
+    rdfs:domain jansutra:Citizen ;
+    rdfs:range jansutra:EconomicRecord .
+
+jansutra:hasHealthRecord a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has health record"@en ;
+    rdfs:domain jansutra:Citizen ;
+    rdfs:range jansutra:HealthRecord .
+
+jansutra:hasLandHolding a owl:ObjectProperty ;
+    rdfs:label "has land holding"@en ;
+    rdfs:comment "A citizen may have zero or more land holdings across different locations."@en ;
+    rdfs:domain jansutra:Citizen ;
+    rdfs:range jansutra:LandHolding .
+
+jansutra:hasServiceAccessRecord a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has service access record"@en ;
+    rdfs:domain jansutra:Citizen ;
+    rdfs:range jansutra:ServiceAccessRecord .
+
+jansutra:hasSocialRecord a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has social record"@en ;
+    rdfs:domain jansutra:Citizen ;
+    rdfs:range jansutra:SocialRecord .
+
+jansutra:residesIn a owl:ObjectProperty ;
+    rdfs:label "resides in"@en ;
+    rdfs:comment "Links a citizen to the lowest-level administrative unit (village or ward) of their primary residence."@en ;
+    rdfs:domain jansutra:Citizen ;
+    rdfs:range jansutra:AdministrativeUnit .
+
+jansutra:surveyYear a owl:DatatypeProperty ;
+    rdfs:label "survey year"@en ;
+    rdfs:domain jansutra:VulnerabilityDimension ;
+    rdfs:range xsd:gYear .
+
+jansutra:VulnerabilityDimension a owl:Class ;
+    rdfs:label "Vulnerability Dimension"@en,
+        "संवेदनशीलता आयाम"@hi ;
+    rdfs:comment "Abstract superclass for all point-in-time socioeconomic domain records (economic, social, health, land, services). Each record carries a survey year and data source for provenance."@en ;
+    dpv:hasPersonalDataCategory dpv:SensitivePersonalData .
+
+jansutra:Citizen a owl:Class ;
+    rdfs:label "Citizen"@en,
+        "नागरिक"@hi ;
+    rdfs:comment "A resident of India whose socioeconomic profile is captured in the survey. Identified by an opaque internal UUID URI (https://jansutra.in/citizen/<uuid>)."@en ;
+    rdfs:subClassOf schema:Person .
+
